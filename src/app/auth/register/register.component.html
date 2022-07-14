@@ -19,7 +19,7 @@
         <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="termsAndConditions">
         <label class="form-check-label" for="exampleCheck1">I accept terms and conditions</label>
       </div>
-      <button type="submit" class="btn btn-primary">Register</button>
+      <button type="submit" class="btn btn-primary" [disabled]="formCustom.invalid">Register</button>
     </form>
 
   </div>

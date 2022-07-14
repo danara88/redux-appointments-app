@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 import { RegisterComponent } from './register.component';
 
@@ -11,6 +12,7 @@ describe('RegisterComponent', () => {
         await TestBed.configureTestingModule({
             declarations: [RegisterComponent],
             imports: [ReactiveFormsModule],
+            providers: [AuthService],
         }).compileComponents();
 
         fixture = TestBed.createComponent(RegisterComponent);
