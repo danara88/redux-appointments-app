@@ -1809,6 +1809,20 @@
   "resolved" "https://artifactory.spectrumtoolbox.com/artifactory/api/npm/npm/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz"
   "version" "2.0.4"
 
+"@ngrx/store-devtools@^14.0.2":
+  "integrity" "sha1-wHHKZmxt4haG3mmrsfVv2F/ZJK4="
+  "resolved" "https://artifactory.spectrumtoolbox.com/artifactory/api/npm/npm/@ngrx/store-devtools/-/store-devtools-14.0.2.tgz"
+  "version" "14.0.2"
+  dependencies:
+    "tslib" "^2.0.0"
+
+"@ngrx/store@^14.0.2", "@ngrx/store@14.0.2":
+  "integrity" "sha1-+atf1o6iGa6zknapug4+JLIOOao="
+  "resolved" "https://artifactory.spectrumtoolbox.com/artifactory/api/npm/npm/@ngrx/store/-/store-14.0.2.tgz"
+  "version" "14.0.2"
+  dependencies:
+    "tslib" "^2.0.0"
+
 "@ngtools/webpack@14.0.5":
   "integrity" "sha1-8fUWYSUyZgvmnHbR3ljA1L+LmjQ="
   "resolved" "https://artifactory.spectrumtoolbox.com/artifactory/api/npm/npm/@ngtools/webpack/-/webpack-14.0.5.tgz"
@@ -6224,7 +6238,7 @@
   dependencies:
     "tslib" "^1.9.0 || ~2.1.0"
 
-"rxjs@^6.0.0 || ^7.0.0", "rxjs@^6.5.3 || ^7.4.0", "rxjs@^7.5.5", "rxjs@~6.6.0 || ^7.0.0", "rxjs@~7.5.0":
+"rxjs@^6.0.0 || ^7.0.0", "rxjs@^6.5.3 || ^7.4.0", "rxjs@^6.5.3 || ^7.5.0", "rxjs@^7.5.5", "rxjs@~6.6.0 || ^7.0.0", "rxjs@~7.5.0":
   "integrity" "sha1-BEZXdVeGKv1pA1F858rnnsuWYrw="
   "resolved" "https://artifactory.spectrumtoolbox.com/artifactory/api/npm/npm/rxjs/-/rxjs-7.5.6.tgz"
   "version" "7.5.6"
