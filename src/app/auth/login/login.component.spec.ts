@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire/compat';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { environment } from 'src/environments/environment';
 
 import { LoginComponent } from './login.component';
 
@@ -11,7 +14,11 @@ describe('LoginComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [LoginComponent],
-            imports: [ReactiveFormsModule],
+            imports: [
+                ReactiveFormsModule,
+                AngularFireModule.initializeApp(environment.firebase),
+                RouterTestingModule,
+            ],
             providers: [AuthService],
         }).compileComponents();
 
@@ -25,8 +32,6 @@ describe('LoginComponent', () => {
     });
 
     it('should create correct login form fields', () => {
-        // Asset
-
         //Act
         component.ngOnInit();
 

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire/compat';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { environment } from 'src/environments/environment';
 
 import { RegisterComponent } from './register.component';
 
@@ -11,7 +14,11 @@ describe('RegisterComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [RegisterComponent],
-            imports: [ReactiveFormsModule],
+            imports: [
+                ReactiveFormsModule,
+                AngularFireModule.initializeApp(environment.firebase),
+                RouterTestingModule,
+            ],
             providers: [AuthService],
         }).compileComponents();
 
@@ -25,8 +32,6 @@ describe('RegisterComponent', () => {
     });
 
     it('should contain correct register form fields', () => {
-        // Asset
-
         // Act
         component.ngOnInit();
 
