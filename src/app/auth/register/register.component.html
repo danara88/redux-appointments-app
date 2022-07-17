@@ -2,24 +2,27 @@
 <div class="row mt-5">
   <div class="col-md-12">
     <h3 class="twext-center">Create Account</h3>
-    <form>
+    <form [formGroup]="formCustom" (ngSubmit)="registerUser()">
       <div class="mb-3">
         <label for="completeName" class="form-label">Complete name</label>
-        <input type="text" class="form-control" id="completeName">
+        <input type="text" class="form-control" id="completeName" formControlName="completeName">
       </div>
       <div class="mb-3">
         <label for="emailAddress" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="emailAddress">
+        <input type="email" class="form-control" id="emailAddress" formControlName="emailAddress">
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password">
+        <input type="password" class="form-control" id="password" formControlName="password">
+      </div>
+      <div class="mb-3">
+        If you have an account please go to <a routerLink="/auth/login">sign in</a>
       </div>
       <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="termsAndConditions">
         <label class="form-check-label" for="exampleCheck1">I accept terms and conditions</label>
       </div>
-      <button type="submit" class="btn btn-primary">Register</button>
+      <button type="submit" class="btn btn-primary" [disabled]="formCustom.invalid">Register</button>
     </form>
 
   </div>
