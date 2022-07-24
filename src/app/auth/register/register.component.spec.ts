@@ -59,6 +59,6 @@ describe('RegisterComponent', () => {
         component.registerUser();
 
         // Assert
-        expect(spy).toHaveBeenCalledWith(email, password);
+        expect(spy).toHaveBeenCalledWith(completeName, email, password);
     });
 });
