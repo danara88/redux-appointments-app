@@ -15,6 +15,10 @@ export class AuthService {
     public userAuthSubs: Subscription = new Subscription();
     private _user: User | null = new User('', '', '', '');
 
+    get user() {
+        return { ...this._user };
+    }
+
     constructor(
         private _auth: AngularFireAuth,
         private _firestore: AngularFirestore,

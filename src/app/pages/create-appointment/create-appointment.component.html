@@ -1,0 +1,36 @@
+<app-layout>
+  <div class="row">
+    <div class="col-md-12 my-3">
+      <h2>Create Appointment</h2>
+    </div>
+    <div class="col-md-12">
+      <form [formGroup]="formCustom" (ngSubmit)="createAppointment()">
+        <div class="mb-3">
+          <label for="clientName" class="form-label">Client's complete name</label>
+          <input type="text" class="form-control" id="clientName" placeholder="Insert client's complete name" formControlName="clientName">
+        </div>
+        <div class="d-flex justify-content-between">
+          <div class="mb-3 w-25">
+            <label for="appointmentDate" class="form-label">Appointment date</label>
+            <input type="date" class="form-control" id="appointmentDate" formControlName="appointmentDate">
+          </div>
+          <div class="mb-3 w-25">
+            <label for="appointmentTime" class="form-label">Appointment time</label>
+            <input type="time" class="form-control" id="appointmentTime" formControlName="appointmentTime">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone number</label>
+          <input type="text" class="form-control" id="phoneNumber" placeholder="Ex. 888 333 4447" formControlName="phoneNumber">
+        </div>
+        <div class="mb-3">
+          <label for="extraNote" class="form-label">Note</label>
+          <textarea class="form-control" id="extraNote" rows="3" formControlName="notes"></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary" [disabled]="formCustom.invalid">Create appointment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</app-layout>
