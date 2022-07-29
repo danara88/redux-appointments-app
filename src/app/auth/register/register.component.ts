@@ -41,9 +41,9 @@ export class RegisterComponent implements OnInit {
      */
     async registerUser() {
         if (this.formCustom.invalid) return;
-        const { emailAddress, password } = this.formCustom.value;
+        const { completeName, emailAddress, password } = this.formCustom.value;
         try {
-            await this._authService.createUserFirebase(emailAddress, password);
+            await this._authService.createUserFirebase(completeName, emailAddress, password);
             this.formCustom.reset();
             this._router.navigateByUrl('/home');
         } catch (error) {

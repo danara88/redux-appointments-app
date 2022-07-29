@@ -1,12 +1,51 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Store } from '@ngrx/store';
 import firebase from 'firebase/compat/app';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/user.model';
+import { setUser, unsetUser } from 'src/app/store/actions';
+import { AppState } from 'src/app/store/app.reducers';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(private _auth: AngularFireAuth) {}
+    public userAuthSubs: Subscription = new Subscription();
+    private _user: User | null = new User('', '', '', '');
+
+    get user() {
+        return { ...this._user };
+    }
+
+    constructor(
+        private _auth: AngularFireAuth,
+        private _firestore: AngularFirestore,
+        private store$: Store<AppState>
+    ) {}
+
+    /**
+     * Method to listen firebase authentication
+     */
+    initAuthListener() {
+        this._auth.authState.subscribe((firebaseUser) => {
+            if (firebaseUser) {
+                const uid = firebaseUser.uid;
+                this.userAuthSubs = this._firestore
+                    .doc(`${uid}/user`)
+                    .valueChanges()
+                    .subscribe((user: any) => {
+                        this._user = User.getFirebaseUser(user);
+                        this.store$.dispatch(setUser({ user: this._user }));
+                    });
+            } else {
+                this.userAuthSubs.unsubscribe();
+                this._user = null;
+                this.store$.dispatch(unsetUser());
+            }
+        });
+    }
 
     /**
      * Method to register a user in firebase
@@ -14,8 +53,14 @@ export class AuthService {
      * @param password
      * @returns
      */
-    createUserFirebase(email: string, password: string): Promise<firebase.auth.UserCredential> {
-        return this._auth.createUserWithEmailAndPassword(email, password);
+    createUserFirebase(name: string, email: string, password: string): Promise<void> {
+        return this._auth.createUserWithEmailAndPassword(email, password).then((firebaseUser) => {
+            const uid = firebaseUser.user!.uid;
+            const user = new User(uid, name, email, Date.now().toString());
+            return this._firestore.doc(`${uid}/user`).set({
+                ...user,
+            });
+        });
     }
 
     /**

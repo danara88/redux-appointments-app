@@ -2,7 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from '@angular/fire/compat';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule } from '@ngrx/store';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { appReducers } from 'src/app/store/app.reducers';
 import { environment } from 'src/environments/environment';
 
 import { RegisterComponent } from './register.component';
@@ -18,6 +20,7 @@ describe('RegisterComponent', () => {
                 ReactiveFormsModule,
                 AngularFireModule.initializeApp(environment.firebase),
                 RouterTestingModule,
+                StoreModule.forRoot(appReducers),
             ],
             providers: [AuthService, FormBuilder],
         }).compileComponents();
@@ -59,6 +62,6 @@ describe('RegisterComponent', () => {
         component.registerUser();
 
         // Assert
-        expect(spy).toHaveBeenCalledWith(email, password);
+        expect(spy).toHaveBeenCalledWith(completeName, email, password);
     });
 });
