@@ -1,0 +1,18 @@
+<table class="table" *ngIf="appointments.length">
+  <thead>
+    <tr>
+      <th scope="col">Client</th>
+      <th scope="col">Appointment Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Phone Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let appointment of appointments | sortAppointments">
+      <td>{{appointment.clientName}}</td>
+      <td>{{appointment.appointmentDate | date:'mediumDate'}}</td>
+      <td>{{appointment.appointmentTime}}</td>
+      <td>{{appointment.phoneNumber}}</td>
+    </tr>
+  </tbody>
+</table>

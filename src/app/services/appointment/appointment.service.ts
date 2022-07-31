@@ -3,6 +3,7 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firest
 import { Appointment } from 'src/app/models/appointment.model';
 import { AuthService } from '../auth/auth.service';
 import firebase from 'firebase/compat/app';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -26,5 +27,24 @@ export class AppointmentService {
             .add({
                 ...data,
             });
+    }
+
+    /**
+     * Method to get appointments from firebase
+     * @param uid
+     * @returns
+     */
+    getAppointments(uid: string): Observable<Appointment[]> {
+        return this._firestore
+            .collection(`${uid}/appointments/items`)
+            .snapshotChanges()
+            .pipe(
+                map((snapShot) =>
+                    snapShot.map((doc) => ({
+                        uid: doc.payload.doc.id,
+                        ...(doc.payload.doc.data() as any),
+                    }))
+                )
+            );
     }
 }
