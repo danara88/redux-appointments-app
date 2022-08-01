@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
 import firebase from 'firebase/compat/app';
-import { Subscription } from 'rxjs';
+import { map, Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { setUser, unsetUser } from 'src/app/store/actions';
 import { AppState } from 'src/app/store/app.reducers';
@@ -28,7 +28,7 @@ export class AuthService {
     /**
      * Method to listen firebase authentication
      */
-    initAuthListener() {
+    initAuthListener(): void {
         this._auth.authState.subscribe((firebaseUser) => {
             if (firebaseUser) {
                 const uid = firebaseUser.uid;
@@ -45,6 +45,14 @@ export class AuthService {
                 this.store$.dispatch(unsetUser());
             }
         });
+    }
+
+    /**
+     * Method to verify if the firebase user is autheticated or not
+     * @returns
+     */
+    isAuth(): Observable<boolean> {
+        return this._auth.authState.pipe(map((user) => user !== null));
     }
 
     /**
