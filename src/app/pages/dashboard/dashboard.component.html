@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<app-layout>
+  <div class="row">
+    <div class="col-md-12 my-3">
+      <h2>Dashboard</h2>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Appointments</h5>
+          <p class="card-text">You have a total of:</p>
+          <div><span class="number">{{totalAppointments}}</span>appointments</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Completed Appintments</h5>
+          <p class="card-text">You have completed:</p>
+          <div class="completed-status"><span class="number">{{completedAppointments}}</span>appointments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-layout>

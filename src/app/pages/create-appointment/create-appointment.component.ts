@@ -30,14 +30,11 @@ export class CreateAppointmentComponent implements OnInit {
      */
     private initForm(): void {
         this.formCustom = this._fb.group({
-            clientName: ['Beto Hernandez', Validators.required],
+            clientName: ['', Validators.required],
             appointmentDate: [null, Validators.required],
             appointmentTime: [null, Validators.required],
-            phoneNumber: [
-                '8445677887',
-                [Validators.required, Validators.pattern(this.phoneNumberRegex)],
-            ],
-            notes: ['Ejemplo'],
+            phoneNumber: ['', [Validators.required, Validators.pattern(this.phoneNumberRegex)]],
+            notes: [''],
         });
     }
 

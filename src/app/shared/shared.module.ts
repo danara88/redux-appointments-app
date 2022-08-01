@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SortAppointmentsPipe } from './pipes/sort-appointments.pipe';
 
 @NgModule({
-    declarations: [],
+    declarations: [SortAppointmentsPipe],
     imports: [CommonModule, NgxSpinnerModule],
-    exports: [NgxSpinnerModule, ReactiveFormsModule],
+    exports: [NgxSpinnerModule, ReactiveFormsModule, SortAppointmentsPipe],
 })
 export class SharedModule {}
