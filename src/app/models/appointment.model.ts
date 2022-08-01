@@ -2,6 +2,7 @@
  * Appointment Model
  */
 export class Appointment {
+    public status: AppointmentStatus;
     public createdOn: string;
 
     constructor(
@@ -12,5 +13,15 @@ export class Appointment {
         public notes: string
     ) {
         this.createdOn = Date.now().toString();
+        this.status = AppointmentStatus.PENDING;
     }
+}
+
+/**
+ * Appointment status
+ */
+export enum AppointmentStatus {
+    COMPLETED = 'completed',
+    PENDING = 'pending',
+    CANCELED = 'canceled',
 }
