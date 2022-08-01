@@ -47,7 +47,7 @@ describe('CreateAppointmentComponent', () => {
             ''
         );
         //Act
-        const { createdOn, ...data } = appointment;
+        const { createdOn, status, ...data } = appointment;
         component.formCustom.setValue(data);
         component.createAppointment();
         setTimeout(() => {

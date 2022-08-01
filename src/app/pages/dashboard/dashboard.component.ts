@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppointmentStatus } from 'src/app/models/appointment.model';
@@ -9,7 +9,7 @@ import { AppState } from 'src/app/store/app.reducers';
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
     public appointmentsSubscription: Subscription = new Subscription();
     public totalAppointments: number = 0;
     public completedAppointments: number = 0;
@@ -24,5 +24,9 @@ export class DashboardComponent implements OnInit {
                     (item) => item.status === AppointmentStatus.COMPLETED
                 ).length;
             });
+    }
+
+    ngOnDestroy(): void {
+        this.appointmentsSubscription.unsubscribe();
     }
 }
